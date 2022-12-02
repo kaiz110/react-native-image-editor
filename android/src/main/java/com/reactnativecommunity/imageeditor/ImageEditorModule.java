@@ -368,6 +368,12 @@ public class ImageEditorModule extends ReactContextBaseJavaModule {
       int cropWidth = Math.round(newWidth / (float) outOptions.inSampleSize);
       int cropHeight = Math.round(newHeight / (float) outOptions.inSampleSize);
       float cropScale = scale * outOptions.inSampleSize;
+      
+      if((cropY+cropHeight)>bitmap.getHeight())
+        cropHeight = bitmap.getHeight()-cropY;
+
+      if((cropX+cropWidth)>bitmap.getWidth())
+        cropWidth = bitmap.getWidth()-cropX;
 
       Matrix scaleMatrix = new Matrix();
       scaleMatrix.setScale(cropScale, cropScale);
